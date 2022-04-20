@@ -1,6 +1,14 @@
+import Main from './components/Layout/Main';
+import Header from './components/UI/Header';
+import TodosProvider from './store/TodosProvider';
 
 function App() {
-  return ( <div>Todo's App</div>
+
+  return (
+    <TodosProvider>
+      <Header />
+      <Main/>
+    </TodosProvider>
   );
 }
 
