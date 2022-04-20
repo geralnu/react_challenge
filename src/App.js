@@ -1,16 +1,14 @@
+import Main from './components/Layout/Main';
 import Header from './components/UI/Header';
-import TodoForm from './components/Todos/TodoForm/TodoForm';
-import TodoList from './components/Todos/TodoList/TodoList';
+import TodosProvider from './store/TodosProvider';
 
 function App() {
-  return ( 
-  <div>
-    <Header />
-    <main>
-      <TodoForm/>
-      <TodoList/>
-    </main>
-  </div>
+
+  return (
+    <TodosProvider>
+      <Header />
+      <Main/>
+    </TodosProvider>
   );
 }
 

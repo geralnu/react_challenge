@@ -1,7 +1,5 @@
 .form{
-    margin-top: 3rem;
     background-color: white;
-    padding: 2rem;
     height: auto;
     width: 100%;
 }
@@ -21,6 +19,7 @@ input, textarea {
   }
 
 .button{
+    min-width: fit-content;
     width: 20%;
     height: 2.5rem;
     border-radius: 0.375rem;
@@ -35,7 +34,9 @@ input, textarea {
     align-items: center;
     font-weight: 600;
     margin: 10px 0;
+    cursor: pointer;
 }
+
 
 .button img{
     width: 10px;

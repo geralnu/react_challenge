@@ -1,28 +1,64 @@
 import classes from './TodoItem.module.css';
-import editIcon from '../../../assets/lapiz.svg';
-import deleteIcon from '../../../assets/basura.svg';
+import TodosContext from '../../../store/todos-context';
+import { useContext } from 'react';
+import { Card, CardContent, Typography, IconButton, Grid } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/DeleteOutline';
+import EditIcon from '@mui/icons-material/EditOutlined';
+import AlertDialog from '../../UI/AlertDialog';
 
-const TodoItem = props => {
+const TodoItem = ({ item }) => {
+    const todosCtx = useContext(TodosContext);
 
+    const deleteItem = (id) => {
+        todosCtx.removeTodo(id);
+        todosCtx.setAlertOpen(false);
+    }
 
-    
+    const updateItem = (item) => {
+        todosCtx.setIsCreate(false);
+        todosCtx.setFormIsShown(true);
+        todosCtx.setCurrentItem(item);
+    }
+
+    const deleteItemHandler = (id) => {
+        todosCtx.setAlertOpen(true);
+    }
+
+    const closeAlertHandler = () => {
+        todosCtx.setAlertOpen(false);
+    }
+
     return (
-        <div className={classes.card}>
-            <div className={classes.title}>
-                <div className={classes.category}></div>Titulo
-            </div>
-            <div className={classes.body}>
-                <p>hjkdhkd dljlcjfjlcmc fjclkfclcjd fcdfmjñdfkmñ </p>
-            </div>
-            <div className={classes.actions}>
-                <div className={classes.action}>
-                    <img src={editIcon} />
-                </div>
-                <div className={classes.action}>
-                    <img src={deleteIcon} />
-                </div>
-            </div>
-        </div>
+        <Card className={classes.card}>
+            <Grid container direction="column" justifyContent="space-between" alignItems="flex-start">
+                <CardContent className={classes.card_head}>
+                    <Typography variant="h5" className={classes.card_title}>
+                        <div className={classes.card_category} style={{ backgroundColor: `rgb(${item.color})` }}></div>
+                        {item.title}
+                    </Typography>
+                    <div className={classes.card_body}>
+                        <p>{item.description} </p>
+                    </div>
+
+                </CardContent>
+                <Grid container direction="row" justifyContent="flex-end" alignItems="center">
+                    <IconButton aria-label="edit" size="small" onClick={() => updateItem(item)}>
+                        <EditIcon />
+                    </IconButton>
+                    <IconButton aria-label="delete" size="small" onClick={() => deleteItemHandler(item.id)}>
+                        <DeleteIcon />
+                    </IconButton>
+                </Grid>
+            </Grid>
+            <AlertDialog
+                open={todosCtx.isAlertOpen}
+                closeHandler={closeAlertHandler}
+                actionHandler={() => deleteItem(item.id)}
+                title={'Delete Task'}
+                message={'Are you sure you want to delete this task?'}
+            />
+        </Card>
+
     );
 
 }

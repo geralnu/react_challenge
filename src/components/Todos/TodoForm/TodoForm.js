@@ -1,26 +1,83 @@
-import { Fragment } from "react";
+import { Fragment, useContext, useState } from "react";
 import classes from './TodoForm.module.css';
-import addIcon from '../../../assets/mas.svg';
+import TodosContext from "../../../store/todos-context";
 
-const TodoForm = props => {
+const TodoForm = () => {
+    const todosCtx  = useContext(TodosContext);
+    const [enteredTitle, setEnteredTitle] = useState(todosCtx.currentItem?.title ?? '');
+    const [enteredDescription, setEnteredDescription] = useState(todosCtx.currentItem?.description ?? '');
+    const [enteredDate, setEnteredDate] = useState(todosCtx.currentItem?.date ?? '');
+    const modalTitle = todosCtx.isCreate? 'Add new Task' : 'Edit Task';
+
+    const titleInputChangeHandler = (event) => {
+        setEnteredTitle(event.target.value);
+    }
+
+    const dateInputChangeHandler = (event) => {
+        setEnteredDate(event.target.value);
+    }
+
+    const descriptionInputChangeHandler = (event) => {
+        setEnteredDescription(event.target.value);
+    }
+
+    const clearForm = () => {
+        setEnteredTitle('');
+        setEnteredDate('');
+        setEnteredDescription('');
+        todosCtx.setCurrentItem({});
+    }
+
+    const createNewTask = () => {
+        const newTodo = {
+            id: new Date().getTime(),
+            title: enteredTitle,
+            description: enteredDescription,
+            color: '96, 191, 151',
+            date: enteredDate,
+        };
+
+        todosCtx.addTodo(newTodo);
+    }
+
+    const updateNewTask = () => {
+        
+        const updatedItem = {
+            id: todosCtx.currentItem.id,
+            title: enteredTitle,
+            description: enteredDescription,
+            color: '96, 191, 151',
+            date: enteredDate,
+        }
+        todosCtx.setCurrentItem(updatedItem);
+        todosCtx.updateTodo(updatedItem.id, updatedItem);
+    }
+
+    const formSubmissionHandler = (event) => {
+        event.preventDefault();
+        (todosCtx.isCreate) ? createNewTask() : updateNewTask() ;    
+        clearForm();
+        todosCtx.setFormIsShown(false);
+    }
+
     return (
         <Fragment>
-            <form className={classes.form}>
+            <h2>{modalTitle}</h2>
+            <form className={classes.form} onSubmit={formSubmissionHandler}>
                 <div>
-                    <label>Nombre:</label>
-                    <input type="text"/>
+                    <label>Title:</label>
+                    <input type="text" value={enteredTitle} onChange={titleInputChangeHandler} />
                 </div>
                 <div>
-                    <label>Categoría:</label>
-                    <input type="text"/>
+                    <label>Date:</label>
+                    <input type="date" value={enteredDate} onChange={dateInputChangeHandler} />
                 </div>
                 <div>
                     <label>descripción:</label>
-                    <textarea type="text"/>
+                    <textarea type="text" value={enteredDescription} onChange={descriptionInputChangeHandler} />
                 </div>
-                <button className={classes.button}> 
+                <button className={classes.button}>
                     Agregar
-                    <img src={addIcon}/>
                 </button>
             </form>
         </Fragment>
