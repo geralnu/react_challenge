@@ -10,8 +10,7 @@
 }
 .card_title {
     font-size: 20px;
-    color: #41404c;
-    font-weight: 600;
+    color: #424247;
     display: flex;
     align-items: center;
 }
@@ -25,5 +24,5 @@
 
 .card_body p{
     font-size: 14px;
-    color: #525878;
+    color: #959395;
 }

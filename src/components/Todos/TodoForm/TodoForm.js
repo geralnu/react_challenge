@@ -1,13 +1,14 @@
 import { Fragment, useContext, useState } from "react";
 import classes from './TodoForm.module.css';
 import TodosContext from "../../../store/todos-context";
+import { TextField, Typography } from "@mui/material";
 
 const TodoForm = () => {
-    const todosCtx  = useContext(TodosContext);
+    const todosCtx = useContext(TodosContext);
     const [enteredTitle, setEnteredTitle] = useState(todosCtx.currentItem?.title ?? '');
     const [enteredDescription, setEnteredDescription] = useState(todosCtx.currentItem?.description ?? '');
     const [enteredDate, setEnteredDate] = useState(todosCtx.currentItem?.date ?? '');
-    const modalTitle = todosCtx.isCreate? 'Add new Task' : 'Edit Task';
+    const modalTitle = todosCtx.isCreate ? 'Add new Task' : 'Edit Task';
 
     const titleInputChangeHandler = (event) => {
         setEnteredTitle(event.target.value);
@@ -41,7 +42,7 @@ const TodoForm = () => {
     }
 
     const updateNewTask = () => {
-        
+
         const updatedItem = {
             id: todosCtx.currentItem.id,
             title: enteredTitle,
@@ -55,24 +56,27 @@ const TodoForm = () => {
 
     const formSubmissionHandler = (event) => {
         event.preventDefault();
-        (todosCtx.isCreate) ? createNewTask() : updateNewTask() ;    
+        (todosCtx.isCreate) ? createNewTask() : updateNewTask();
         clearForm();
         todosCtx.setFormIsShown(false);
     }
 
     return (
         <Fragment>
-            <h2>{modalTitle}</h2>
+            <Typography variant="h5" noWrap component="div" sx={{fontWeight: 600, color: '#313136', marginBottom:'1rem'}}>
+                {modalTitle}
+            </Typography>
             <form className={classes.form} onSubmit={formSubmissionHandler}>
-                <div>
+                <div className={classes.input_group}>
+                
                     <label>Title:</label>
                     <input type="text" value={enteredTitle} onChange={titleInputChangeHandler} />
                 </div>
-                <div>
+                <div className={classes.input_group}>
                     <label>Date:</label>
                     <input type="date" value={enteredDate} onChange={dateInputChangeHandler} />
                 </div>
-                <div>
+                <div className={classes.input_group}>
                     <label>descripción:</label>
                     <textarea type="text" value={enteredDescription} onChange={descriptionInputChangeHandler} />
                 </div>

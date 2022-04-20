@@ -22,23 +22,28 @@ const Main = () => {
 
   return (
     <Container>
-      <Grid container>
-      <Typography
-                            variant="h5"
-                            noWrap
-                            component="div"
-                            sx={{
-                                fontWeight: 800,
-                                color: 'darkgray'
-                            }}
-                        >
-                            My tasks
-                        </Typography>
+      <Grid container direction="column">
+        <Typography noWrap component="div" sx={{ margin: '2rem 0 0 0', color: '#B3BCC4', fontSize: '14px'}}>
+          Manage your tasks!
+        </Typography>
+        <Typography
+          variant="h5"
+          noWrap
+          component="div"
+          sx={{
+            fontWeight: 600,
+            color: '#313136',
+            margin: '0 0 0.313rem',
+            fontFamily: 'Open Sans'
+          }}
+        >
+          My Tasks
+        </Typography>
       </Grid>
       <Grid container direction="column" justifyContent="center" alignItems="flex-end">
-        <Button variant="contained" startIcon={<AddIcon />} 
-        className='addButton'
-        onClick={() => showModalForm()}>Add Task</Button>
+        <Button variant="contained" startIcon={<AddIcon />}
+          className='addButton'
+          onClick={() => showModalForm()}>Add Task</Button>
       </Grid>
 
       {todosCtx.formIsShown &&

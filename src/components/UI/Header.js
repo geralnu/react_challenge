@@ -17,7 +17,7 @@ const Header = (props) => {
                             }}
                             className={classes.header_logo}
                         >
-                            Todo App
+                            T
                         </Typography>
 
                     </Toolbar>

@@ -32,7 +32,7 @@ const TodoItem = ({ item }) => {
         <Card className={classes.card}>
             <Grid container direction="column" justifyContent="space-between" alignItems="flex-start">
                 <CardContent className={classes.card_head}>
-                    <Typography variant="h5" className={classes.card_title}>
+                    <Typography variant="h6" sx={{fontWeight: '500', fontFamily: 'Open Sans'}} className={classes.card_title}>
                         <div className={classes.card_category} style={{ backgroundColor: `rgb(${item.color})` }}></div>
                         {item.title}
                     </Typography>
