@@ -1,7 +1,10 @@
 import { Fragment, useContext, useState } from "react";
 import classes from './TodoForm.module.css';
 import TodosContext from "../../../store/todos-context";
-import Typography  from "@mui/material/Typography";
+import Typography from "@mui/material/Typography";
+import { Grid, IconButton } from "@mui/material";
+import  ArrowBackIcon  from "@mui/icons-material/ArrowBack";
+import { useRouter } from 'next/router';
 
 const TodoForm = () => {
     const todosCtx = useContext(TodosContext);
@@ -9,7 +12,8 @@ const TodoForm = () => {
     const [enteredDescription, setEnteredDescription] = useState(todosCtx.currentItem?.description ?? '');
     const [enteredDate, setEnteredDate] = useState(todosCtx.currentItem?.date ?? '');
     const modalTitle = todosCtx.isCreate ? 'Add new Task' : 'Edit Task';
-
+    const router = useRouter();
+    
     const titleInputChangeHandler = (event) => {
         setEnteredTitle(event.target.value);
     }
@@ -26,6 +30,11 @@ const TodoForm = () => {
         setEnteredTitle('');
         setEnteredDate('');
         setEnteredDescription('');
+        todosCtx.setCurrentItem({});
+    }
+
+    const backButtonHandler = () => {        
+        router.back();
         todosCtx.setCurrentItem({});
     }
 
@@ -58,17 +67,23 @@ const TodoForm = () => {
         event.preventDefault();
         (todosCtx.isCreate) ? createNewTask() : updateNewTask();
         clearForm();
-        todosCtx.setFormIsShown(false);
+        backButtonHandler();
+        // todosCtx.setFormIsShown(false);
     }
 
     return (
         <Fragment>
-            <Typography variant="h5" noWrap component="div" sx={{fontWeight: 600, color: '#313136', marginBottom:'1rem'}}>
+            <Grid container >
+                <IconButton aria-label="edit" size="small" onClick={backButtonHandler}>
+                    <ArrowBackIcon/>
+                </IconButton>
+            </Grid> 
+            <Typography variant="h5" noWrap component="div" sx={{ fontWeight: 600, color: '#313136', marginBottom: '1rem' }}>
                 {modalTitle}
             </Typography>
             <form className={classes.form} onSubmit={formSubmissionHandler}>
                 <div className={classes.input_group}>
-                
+
                     <label>Title:</label>
                     <input type="text" value={enteredTitle} onChange={titleInputChangeHandler} />
                 </div>

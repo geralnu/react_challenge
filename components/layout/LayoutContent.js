@@ -7,18 +7,15 @@ import Typography from "@mui/material/Typography";
 import TodoList from "../Todos/TodoList/TodoList";
 import {useContext}  from "react";
 import TodosContext from "../../store/todos-context";
+import { useRouter } from 'next/router';
 
 const LayoutContent = () => {
   const todosCtx = useContext(TodosContext);
+  const router = useRouter();
 
   const navigateToForm = () => {
+    router.push('/create');
     todosCtx.setIsCreate(true);
-    todosCtx.setFormIsShown(true);
-  }
-
-  const hideModalForm = () => {
-    todosCtx.setFormIsShown(false);
-    todosCtx.setCurrentItem({});
   }
 
   return (

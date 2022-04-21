@@ -1,30 +1,34 @@
-import classes from './TodoItem.module.css';
-import TodosContext from '../../../store/todos-context';
-import { useContext } from 'react';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
-import Grid from '@mui/material/Grid';
 import DeleteIcon from '@mui/icons-material/DeleteOutline';
 import EditIcon from '@mui/icons-material/EditOutlined';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Grid from '@mui/material/Grid';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import { useRouter } from 'next/router';
+import { useContext } from 'react';
+import TodosContext from '../../../store/todos-context';
 import AlertDialog from '../../ui/AlertDialog';
+import classes from './TodoItem.module.css';
 
 const TodoItem = ({ item }) => {
     const todosCtx = useContext(TodosContext);
+    const router = useRouter();
 
-    const deleteItem = (id) => {
-        todosCtx.removeTodo(id);
+    const deleteItem = () => {
+        todosCtx.removeTodo(todosCtx.currentItem.id);
         todosCtx.setAlertOpen(false);
+        todosCtx.setCurrentItem({});
     }
 
     const updateItem = (item) => {
+        router.push('/update');
         todosCtx.setIsCreate(false);
-        todosCtx.setFormIsShown(true);
         todosCtx.setCurrentItem(item);
     }
 
-    const deleteItemHandler = (id) => {
+    const deleteItemHandler = (item) => {
+        todosCtx.setCurrentItem(item);
         todosCtx.setAlertOpen(true);
     }
 
@@ -49,7 +53,7 @@ const TodoItem = ({ item }) => {
                     <IconButton aria-label="edit" size="small" onClick={() => updateItem(item)}>
                         <EditIcon />
                     </IconButton>
-                    <IconButton aria-label="delete" size="small" onClick={() => deleteItemHandler(item.id)}>
+                    <IconButton aria-label="delete" size="small" onClick={() => deleteItemHandler(item)}>
                         <DeleteIcon />
                     </IconButton>
                 </Grid>
@@ -57,7 +61,7 @@ const TodoItem = ({ item }) => {
             <AlertDialog
                 open={todosCtx.isAlertOpen}
                 closeHandler={closeAlertHandler}
-                actionHandler={() => deleteItem(item.id)}
+                actionHandler={deleteItem}
                 title={'Delete Task'}
                 message={'Are you sure you want to delete this task?'}
             />
