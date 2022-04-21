@@ -1,0 +1,28 @@
+.card{
+    display: flex;
+    background-color: white;
+    box-shadow: 0 2px 6px #e4ebf1;
+    border-radius: 0.375rem;
+    padding: 0.625rem;
+}
+.card_head {
+    width: 100%;
+}
+.card_title {
+    font-size: 20px;
+    color: #424247;
+    display: flex;
+    align-items: center;
+}
+
+.card_category{
+    width: 0.625rem;
+    height: 0.625rem;
+    border-radius: 50%;
+    margin-right: 0.625rem;
+}
+
+.card_body p{
+    font-size: 14px;
+    color: #959395;
+}
