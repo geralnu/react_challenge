@@ -2,15 +2,15 @@ export const defaultState = {
     items: [
         {
             id: "u1",
-            title: "Cena",
-            description: "recuerda comprar cena para celebrar",
+            title: "Dinner",
+            description: "remember buy dinner to celebrate!",
             date: "2022-04-17",
             color: "201, 134, 64"
         },
         {
             id: "u2",
-            title: "Cita",
-            description: "llamar a la agencia ",
+            title: "Date",
+            description: "call the agency ",
             date: "2022-04-17",
             color: "96, 191, 151",
         },

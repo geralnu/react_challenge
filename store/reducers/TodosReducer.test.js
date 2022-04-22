@@ -8,8 +8,8 @@ describe('Reducer function test', () => {
             type: 'ADD',
             item: {
                 id: "u1",
-                title: "Cena",
-                description: "recuerda comprar cena para celebrar",
+                title: "Dinner",
+                description: "remember buy dinner to celebrate!",
                 date: "2022-04-17",
                 color: "201, 134, 64"
             }
@@ -18,8 +18,8 @@ describe('Reducer function test', () => {
             items: [
                 {
                     id: "u1",
-                    title: "Cena",
-                    description: "recuerda comprar cena para celebrar",
+                    title: "Dinner",
+                    description: "remember buy dinner to celebrate!",
                     date: "2022-04-17",
                     color: "201, 134, 64"
                 }
@@ -34,8 +34,8 @@ describe('Reducer function test', () => {
         const prevState = {
             items: [{
                 id: "u1",
-                title: "Cena",
-                description: "recuerda comprar cena para celebrar",
+                title: "Dinner",
+                description: "remember buy dinner to celebrate!",
                 date: "2022-04-17",
                 color: "201, 134, 64"
             }]
@@ -51,8 +51,8 @@ describe('Reducer function test', () => {
         const prevState = {
             items: [{
                 id: "u1",
-                title: "Cena",
-                description: "recuerda comprar cena para celebrar",
+                title: "Dinner",
+                description: "remember buy dinner to celebrate!",
                 date: "2022-04-17",
                 color: "201, 134, 64"
             }]
@@ -62,8 +62,8 @@ describe('Reducer function test', () => {
             id: "u1",
             item: {
                 id: "u1",
-                title: "Cena Mañana",
-                description: "recordar cena mañana a las 8",
+                title: "Dinner tomorrow",
+                description: "remember dinner tomorrow at 8",
                 date: "2022-04-17",
                 color: "202, 134, 65"
             }
@@ -71,8 +71,8 @@ describe('Reducer function test', () => {
         const EXPECTED = {
             items: [{
                 id: "u1",
-                title: "Cena Mañana",
-                description: "recordar cena mañana a las 8",
+                title: "Dinner tomorrow",
+                description: "remember dinner tomorrow at 8",
                 date: "2022-04-17",
                 color: "202, 134, 65"
             }
@@ -115,8 +115,8 @@ describe('Reducer function test', () => {
             type: 'SET_ITEM',
             item: {
                 id: "u1",
-                title: "Cena Mañana",
-                description: "recordar cena mañana a las 8",
+                title: "Dinner tomorrow",
+                description: "remember dinner tomorrow at 8",
                 date: "2022-04-17",
                 color: "202, 134, 65"
             }
@@ -124,8 +124,8 @@ describe('Reducer function test', () => {
         const EXPECTED = {
             currentItem: {
                 id: "u1",
-                title: "Cena Mañana",
-                description: "recordar cena mañana a las 8",
+                title: "Dinner tomorrow",
+                description: "remember dinner tomorrow at 8",
                 date: "2022-04-17",
                 color: "202, 134, 65"
             }
