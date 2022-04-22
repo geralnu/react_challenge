@@ -1,7 +1,7 @@
 export const defaultState = {
     items: [
         {
-            id: "11111",
+            id: "u1",
             title: "Cena",
             description: "recuerda comprar cena para celebrar",
             date: "2022-04-17",
@@ -26,7 +26,7 @@ export const defaultState = {
     isAlertOpen: false
 };
 
-const ACTIONS = {
+export const ACTIONS = {
     ADD: (state, action) => {
         const updatedItems = [...state.items, action.item];
         return { ...state, items: updatedItems };
@@ -53,6 +53,3 @@ const ACTIONS = {
 export const TodosReducer = (state, action) => {
     return ACTIONS[action.type](state, action) || defaultState;
 };
-
-
-//1.emuk
