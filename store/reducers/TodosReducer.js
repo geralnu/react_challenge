@@ -1,16 +1,16 @@
 export const defaultState = {
     items: [
         {
-            id: "11111",
-            title: "Cena",
-            description: "recuerda comprar cena para celebrar",
+            id: "u1",
+            title: "Dinner",
+            description: "remember buy dinner to celebrate!",
             date: "2022-04-17",
             color: "201, 134, 64"
         },
         {
             id: "u2",
-            title: "Cita",
-            description: "llamar a la agencia ",
+            title: "Date",
+            description: "call the agency ",
             date: "2022-04-17",
             color: "96, 191, 151",
         },
@@ -26,7 +26,7 @@ export const defaultState = {
     isAlertOpen: false
 };
 
-const ACTIONS = {
+export const ACTIONS = {
     ADD: (state, action) => {
         const updatedItems = [...state.items, action.item];
         return { ...state, items: updatedItems };
@@ -53,6 +53,3 @@ const ACTIONS = {
 export const TodosReducer = (state, action) => {
     return ACTIONS[action.type](state, action) || defaultState;
 };
-
-
-//1.emuk

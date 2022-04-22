@@ -12,6 +12,7 @@ const TodoForm = () => {
     const [enteredDescription, setEnteredDescription] = useState(todosCtx.currentItem?.description ?? '');
     const [enteredDate, setEnteredDate] = useState(todosCtx.currentItem?.date ?? '');
     const modalTitle = todosCtx.isCreate ? 'Add new Task' : 'Edit Task';
+    const modalBtnTxt = todosCtx.isCreate ? 'Add' : 'Update';
     const router = useRouter();
     
     const titleInputChangeHandler = (event) => {
@@ -68,7 +69,6 @@ const TodoForm = () => {
         (todosCtx.isCreate) ? createNewTask() : updateNewTask();
         clearForm();
         backButtonHandler();
-        // todosCtx.setFormIsShown(false);
     }
 
     return (
@@ -85,18 +85,18 @@ const TodoForm = () => {
                 <div className={classes.input_group}>
 
                     <label>Title:</label>
-                    <input type="text" value={enteredTitle} onChange={titleInputChangeHandler} />
+                    <input type="text" id="form_title" value={enteredTitle} onChange={titleInputChangeHandler} />
                 </div>
                 <div className={classes.input_group}>
                     <label>Date:</label>
-                    <input type="date" value={enteredDate} onChange={dateInputChangeHandler} />
+                    <input type="date" id="form_date" value={enteredDate} onChange={dateInputChangeHandler} />
                 </div>
                 <div className={classes.input_group}>
                     <label>descripción:</label>
-                    <textarea type="text" value={enteredDescription} onChange={descriptionInputChangeHandler} />
+                    <textarea type="text" id="form_description" value={enteredDescription} onChange={descriptionInputChangeHandler} />
                 </div>
-                <button className={classes.button}>
-                    Agregar
+                <button id="form_button" className={classes.button}>
+                    {modalBtnTxt}
                 </button>
             </form>
         </Fragment>

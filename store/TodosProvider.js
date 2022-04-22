@@ -1,6 +1,6 @@
 import TodosContext from "./todos-context";
 import { TodosReducer, defaultState } from "./reducers/TodosReducer";
-import { useReducer } from "react";
+import { useContext, useReducer } from "react";
 
 const TodosProvider = (props) => {
     const [todoState, dispatchTodoAction] = useReducer(TodosReducer, defaultState);
@@ -23,6 +23,8 @@ const TodosProvider = (props) => {
         {props.children}
     </TodosContext.Provider>
 };
+
+export const useProvider = () => useContext(TodosContext);
 
 export default TodosProvider;
 
