@@ -5,7 +5,6 @@ import Typography from "@mui/material/Typography";
 import { Grid, IconButton } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useRouter } from 'next/router';
-import { CompactPicker } from "react-color";
 import { ChromePicker } from "react-color";
 
 const TodoForm = () => {
