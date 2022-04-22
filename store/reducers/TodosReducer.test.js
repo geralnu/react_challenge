@@ -111,24 +111,19 @@ describe('Reducer function test', () => {
                 date: null,
             }
         };
+        const newItem = {
+            id: "u1",
+            title: "Dinner tomorrow",
+            description: "remember dinner tomorrow at 8",
+            date: "2022-04-17",
+            color: "202, 134, 65"
+        };
         const action = {
             type: 'SET_ITEM',
-            item: {
-                id: "u1",
-                title: "Dinner tomorrow",
-                description: "remember dinner tomorrow at 8",
-                date: "2022-04-17",
-                color: "202, 134, 65"
-            }
+            item: newItem
         }
         const EXPECTED = {
-            currentItem: {
-                id: "u1",
-                title: "Dinner tomorrow",
-                description: "remember dinner tomorrow at 8",
-                date: "2022-04-17",
-                color: "202, 134, 65"
-            }
+            currentItem: newItem
         };
         const udpatedState = TodosReducer(prevState, action);
 

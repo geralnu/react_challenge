@@ -5,6 +5,7 @@ import CardContent from '@mui/material/CardContent';
 import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
+import moment from 'moment';
 import { useRouter } from 'next/router';
 import { useContext } from 'react';
 import TodosContext from '../../../store/todos-context';
@@ -40,10 +41,13 @@ const TodoItem = ({ item }) => {
         <Card className={classes.card}>
             <Grid container direction="column" justifyContent="space-between" alignItems="flex-start">
                 <CardContent className={classes.card_head}>
-                    <Typography variant="h6" sx={{fontWeight: '500', fontFamily: 'Open Sans'}} className={classes.card_title}>
-                        <div className={classes.card_category} style={{ backgroundColor: `rgb(${item.color})` }}></div>
-                        {item.title}
-                    </Typography>
+                    <Grid container direction="row" justifyContent="space-betwen" alignItems="center">
+                        <Typography variant="h6" sx={{ fontWeight: '500', fontFamily: 'Open Sans' }} className={classes.card_title}>
+                            <div className={classes.card_category} style={{ backgroundColor: `rgba(${item.color},0.8)` }}></div>
+                            {item.title}
+                        </Typography>
+                        <div className={classes.date}>{moment(item.date).format('MMMM Do')}</div>
+                    </Grid>
                     <div className={classes.card_body}>
                         <p>{item.description} </p>
                     </div>
