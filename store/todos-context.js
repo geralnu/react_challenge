@@ -6,7 +6,7 @@ const TodosContext = React.createContext({
         id: new Date().getTime(),
         title: '',
         description: '',
-        color: '',
+        color: '#a95f5f',
         date: null,
     },
     isCreate: true,

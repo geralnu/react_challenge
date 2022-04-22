@@ -11,7 +11,7 @@ export default function UpdateTask() {
     },[])
 
     return(
-        <Container sx={{margin: '2rem 0'}}>
+        <Container sx={{margin: '2rem auto'}}>
             <TodoForm/>
         </Container>
     );
